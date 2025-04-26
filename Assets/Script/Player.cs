@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour
 {
@@ -41,5 +43,16 @@ public class Player : MonoBehaviour
         {
 
         }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("EscenaNueva"))
+        {
+            Escenas();
+        }
+    }
+    public void Escenas()
+    {
+        SceneManager.LoadScene("SampleScene2");
     }
 }
