@@ -16,4 +16,5 @@ public class CameraFollow : MonoBehaviour
             transform.LookAt(player);
         
     }
+
 }
