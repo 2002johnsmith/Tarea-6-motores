@@ -38,6 +38,6 @@ public class Player : MonoBehaviour
     }
     public void Escenas()
     {
-        SceneManager.LoadScene("SampleScene2");
+        SceneManager.LoadScene("Mundo 2");
     }
 }
