@@ -21,4 +21,17 @@ public class ChannelPlayer : MonoBehaviour
 
         audioSource.Play();
     }
+    public void AudioStop()
+    {
+        audioSource.Stop();
+    }
+    private void OnEnable()
+    {
+        InteractableObject.OnExitPlayer += AudioStop;
+    }
+    private void OnDisable()
+    {
+        InteractableObject.OnExitPlayer -= AudioStop;
+
+    }
 }

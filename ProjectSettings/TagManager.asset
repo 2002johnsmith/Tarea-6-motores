@@ -4,9 +4,6 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - Sonido1
-  - Sonido2
-  - Sonido3
   - EscenaNueva
   layers:
   - Default

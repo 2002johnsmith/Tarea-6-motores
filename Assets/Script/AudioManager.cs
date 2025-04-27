@@ -3,6 +3,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioSettings[] audioSettings;
+    [SerializeField] private AudioSource audioSource;
 
     private float[] _savedVolumes;
     private int _dataLength;
@@ -18,9 +19,13 @@ public class AudioManager : MonoBehaviour
         {
             _savedVolumes[i] = audioSettings[i].VolumeScaled;
         }
+        InteractableObject.OnEnterPlayer += AudioSourceStop;
+        InteractableObject.OnExitPlayer += AudioSourcePlay;
     }
     private void OnDisable()
     {
+        InteractableObject.OnEnterPlayer -= AudioSourceStop;
+        InteractableObject.OnExitPlayer -= AudioSourcePlay;
 
     }
     public void RevertChanges()
@@ -38,5 +43,13 @@ public class AudioManager : MonoBehaviour
 
             _savedVolumes[i] = audioSettings[i].VolumeScaled;
         }
+    }
+    public void AudioSourceStop()
+    {
+        audioSource.Stop();
+    }
+    public void AudioSourcePlay()
+    {
+        audioSource.Play();
     }
 }

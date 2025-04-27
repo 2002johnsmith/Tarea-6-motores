@@ -29,21 +29,6 @@ public class Player : MonoBehaviour
     {
         Movement = new Vector3(movi.x,0, movi.y);
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Sonido1"))
-        {
-            Debug.Log("Audio God of war");
-        }
-        if (other.CompareTag("Sonido2"))
-        {
-            Debug.Log("Audio mision imposible");
-        }
-        if (other.CompareTag("Sonido3"))
-        {
-            Debug.Log("Audio Star Wars");
-        }
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("EscenaNueva"))
