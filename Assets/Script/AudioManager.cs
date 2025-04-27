@@ -3,7 +3,10 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioSettings[] audioSettings;
-    [SerializeField] private AudioSource audioSource;
+
+    [SerializeField] private AudioSource audioSourceMusic;
+    [SerializeField] private AudioSource audioSourceSFX;
+    [SerializeField] private AudioClip AudioClipChange;
 
     private float[] _savedVolumes;
     private int _dataLength;
@@ -21,11 +24,15 @@ public class AudioManager : MonoBehaviour
         }
         InteractableObject.OnEnterPlayer += AudioSourceStop;
         InteractableObject.OnExitPlayer += AudioSourcePlay;
+        InteractableObject.OnEnterPlayer += PlayAudioChange;
+        InteractableObject.OnExitPlayer += PlayAudioChange;
     }
     private void OnDisable()
     {
         InteractableObject.OnEnterPlayer -= AudioSourceStop;
         InteractableObject.OnExitPlayer -= AudioSourcePlay;
+        InteractableObject.OnEnterPlayer -= PlayAudioChange;
+        InteractableObject.OnExitPlayer -= PlayAudioChange;
 
     }
     public void RevertChanges()
@@ -46,10 +53,14 @@ public class AudioManager : MonoBehaviour
     }
     public void AudioSourceStop()
     {
-        audioSource.Stop();
+        audioSourceMusic.Stop();
     }
     public void AudioSourcePlay()
     {
-        audioSource.Play();
+        audioSourceMusic.Play();
+    }
+    public void PlayAudioChange()
+    {
+        audioSourceSFX.PlayOneShot(AudioClipChange);
     }
 }
