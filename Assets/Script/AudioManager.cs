@@ -7,11 +7,18 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource audioSourceMusic;
     [SerializeField] private AudioSource audioSourceSFX;
     [SerializeField] private AudioClip AudioClipChange;
+    public static AudioManager Instance { get; private set; }
 
     private float[] _savedVolumes;
     private int _dataLength;
     private void Awake()
     {
+        if (Instance != null&& Instance!=this)
+        {
+            Destroy(this.gameObject);
+        }
+        Instance=this;
+        DontDestroyOnLoad(this.gameObject);
         _dataLength = audioSettings.Length;
 
         _savedVolumes = new float[_dataLength];
